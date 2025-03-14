@@ -48,13 +48,14 @@ return new class extends Migration
         });
 
         Schema::create('order_detail', function(Blueprint $table){
+            $table->bigInteger('orderDetail_id')->nullable(false);
             $table->bigInteger('order_id')->nullable(false);
             $table->bigInteger('product_id')->nullable(false);
             $table->string('name', 30);
             $table->decimal('price', 10, 2);
             $table->decimal('discount', 10, 2);
             $table->timestamps();
-            $table->primary(['order_id', 'product_id']);
+            $table->primary('orderDetail_id');
             $table->foreign('order_id')->references('order_id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade')->onUpdate('cascade');
         });

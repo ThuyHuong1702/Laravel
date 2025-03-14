@@ -24,20 +24,20 @@
         <tbody>
             @foreach($orderDetails as $detail)
             <tr>
-                <td>{{ $detail->id }}</td>
+                <td>{{ $detail->orderDetail_id }}</td>
                 <td>{{ $detail->order->order_id }}</td>
                 <td>{{ $detail->product->product_id }}</td>
                 <td>{{ $detail->name }}</td>
                 <td>{{ number_format($detail->price, 0, ',', '.') }} đ</td>
                 <td>{{ $detail->discount ?? 0 }}%</td>
                 <td>
-                    <a href="{{ route('order_details.edit', ['order_id' => $detail->order_id, 'product_id' => $detail->product_id]) }}">
+                    <a href="{{ route('order_details.edit', $detail->orderDetail_id) }}">
                         Chỉnh sửa
                     </a>
-                    <a href="{{ route('order_details.show', ['order_id' => $detail->order_id, 'product_id' => $detail->product_id]) }}">
+                    <a href="{{ route('order_details.show', $detail->orderDetail_id) }}">
                         Xem chi tiết
                     </a>
-                    <form action="{{ route('order_details.destroy', ['order_id' => $detail->order_id, 'product_id' => $detail->product_id]) }}" method="POST">
+                    <form action="{{ route('order_details.destroy', $detail->orderDetail_id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Xóa</button>

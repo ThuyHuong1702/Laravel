@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDetail extends Model
 {
     use HasFactory;
-
     protected $table = 'order_detail';
-    public $incrementing = false; // Không tự động tăng vì đây là khóa chính gồm 2 cột
-    public $timestamps = true; // Bật timestamps
+    protected $primaryKey = 'orderDetail_id';
+    public $incrementing = false;
+    protected $keyType = 'bigInteger';
 
-    protected $fillable = ['order_id', 'product_id', 'name', 'price', 'discount'];
+    protected $fillable = ['orderDetail_id','order_id', 'product_id', 'name', 'price', 'discount'];
 
     public function order()
     {
